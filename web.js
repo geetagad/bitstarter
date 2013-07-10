@@ -1,12 +1,12 @@
 var express = require('express');
-var data = "";
+var data = "test";
 
 var app = express.createServer(express.logger());
 
-fs.readFile('index.html', function (err, data) {
+/* fs.readFile('index.html', function (err, data) {
   if (err) throw err;
   console.log(data);
-});
+});*/
 
 app.get('/', function(request, response) {
   response.send( data);
