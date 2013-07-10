@@ -3,6 +3,10 @@ var data = "test";
 
 var app = express.createServer(express.logger());
 
+data = fs.readFileSync('./index.html','utf8')
+
+console.log (text);
+
 /* fs.readFile('index.html', function (err, data) {
   if (err) throw err;
   console.log(data);
