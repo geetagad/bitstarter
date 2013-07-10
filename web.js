@@ -2,11 +2,13 @@ var express = require('express');
 var data = "testing.";
 var fs = require('fs');
 
+console.log ("entered");
+
 var app = express.createServer(express.logger());
 
 data = fs.readFileSync('./index.html','utf8')
 
-console.log (text);
+console.log (data);
 
 /* fs.readFile('index.html', function (err, data) {
   if (err) throw err;
