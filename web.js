@@ -1,19 +1,12 @@
 var express = require('express');
-var data = "testing.";
+var data = "";
 var fs = require('fs');
 
-console.log ("entered");
 
 var app = express.createServer(express.logger());
 
 data = fs.readFileSync('./index.html','utf8')
-
-console.log (data);
-
-/* fs.readFile('index.html', function (err, data) {
-  if (err) throw err;
-  console.log(data);
-});*/
+//console.log (data);
 
 app.get('/', function(request, response) {
   response.send( data);
