@@ -56,17 +56,12 @@ var checkHtmlFile = function(htmlfile, checksfile) {
         var present = $(checks[ii]).length > 0;
         out[checks[ii]] = present;
     }
-    //var outJson = JSON.stringify(checkJson, null, 4);
-    //if (outJson != null) console.log(outJson);
-    //console.log(outJson);
 
     return out;
 };
 
 var checkUrlFile = function(urlfile, checksfile) {
     //console.log ("checkURLFile");
-    //console.log(urlfile);
-    //console.log(checksfile);
     rest.get(urlfile).on('complete', function(result){
            if (result instanceof Error) {
               sys.puts('Error: ' + result.message);
@@ -82,9 +77,8 @@ var checkUrlFile = function(urlfile, checksfile) {
               var present = $(checks[ii]).length > 0;
               out[checks[ii]] = present;
             } 
-            //console.log(out);
              var outJson = JSON.stringify( out, null, 4);
-             if (outJson != null) console.log(outJson);
+             console.log(outJson);
 
             return out;
           }
@@ -100,7 +94,7 @@ var clone = function(fn) {
 if(require.main == module) {
     program
         .option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
-        .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+        .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists))
         .option('-u, --url <url_file>', 'URL for html file')
         .parse(process.argv);
     
@@ -111,12 +105,11 @@ if(require.main == module) {
        console.log(outJson);
     }
     if (program.url) {
-       //console.log ("URL option");
+       //console.log ("url option");
        var checkJson = checkUrlFile(program.url, program.checks);
     }
+   
     
-    //var outJson = JSON.stringify(checkJson, null, 4);
-    //console.log(outJson);
 } else {
-    exports.checkHtmlFile = checkHtmlFile;
+   exports.checkHtmlFile = checkHtmlFile;
 }
